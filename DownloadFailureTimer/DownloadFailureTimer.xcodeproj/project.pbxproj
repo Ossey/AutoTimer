@@ -1,0 +1,325 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1870674A1EC9F2EE0031138E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 187067491EC9F2EE0031138E /* main.m */; };
+		1870674D1EC9F2EE0031138E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1870674C1EC9F2EE0031138E /* AppDelegate.m */; };
+		187067501EC9F2EE0031138E /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1870674F1EC9F2EE0031138E /* ViewController.m */; };
+		187067531EC9F2EE0031138E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 187067511EC9F2EE0031138E /* Main.storyboard */; };
+		187067551EC9F2EE0031138E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 187067541EC9F2EE0031138E /* Assets.xcassets */; };
+		187067581EC9F2EE0031138E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 187067561EC9F2EE0031138E /* LaunchScreen.storyboard */; };
+		187067611EC9F32A0031138E /* AutoTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 187067601EC9F32A0031138E /* AutoTimer.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		187067451EC9F2EE0031138E /* DownloadFailureTimer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DownloadFailureTimer.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		187067491EC9F2EE0031138E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		1870674B1EC9F2EE0031138E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		1870674C1EC9F2EE0031138E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		1870674E1EC9F2EE0031138E /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		1870674F1EC9F2EE0031138E /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		187067521EC9F2EE0031138E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		187067541EC9F2EE0031138E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		187067571EC9F2EE0031138E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		187067591EC9F2EE0031138E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1870675F1EC9F32A0031138E /* AutoTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutoTimer.h; sourceTree = "<group>"; };
+		187067601EC9F32A0031138E /* AutoTimer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutoTimer.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		187067421EC9F2EE0031138E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1870673C1EC9F2EE0031138E = {
+			isa = PBXGroup;
+			children = (
+				187067471EC9F2EE0031138E /* DownloadFailureTimer */,
+				187067461EC9F2EE0031138E /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		187067461EC9F2EE0031138E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				187067451EC9F2EE0031138E /* DownloadFailureTimer.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		187067471EC9F2EE0031138E /* DownloadFailureTimer */ = {
+			isa = PBXGroup;
+			children = (
+				1870675F1EC9F32A0031138E /* AutoTimer.h */,
+				187067601EC9F32A0031138E /* AutoTimer.m */,
+				1870674B1EC9F2EE0031138E /* AppDelegate.h */,
+				1870674C1EC9F2EE0031138E /* AppDelegate.m */,
+				1870674E1EC9F2EE0031138E /* ViewController.h */,
+				1870674F1EC9F2EE0031138E /* ViewController.m */,
+				187067511EC9F2EE0031138E /* Main.storyboard */,
+				187067541EC9F2EE0031138E /* Assets.xcassets */,
+				187067561EC9F2EE0031138E /* LaunchScreen.storyboard */,
+				187067591EC9F2EE0031138E /* Info.plist */,
+				187067481EC9F2EE0031138E /* Supporting Files */,
+			);
+			path = DownloadFailureTimer;
+			sourceTree = "<group>";
+		};
+		187067481EC9F2EE0031138E /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				187067491EC9F2EE0031138E /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		187067441EC9F2EE0031138E /* DownloadFailureTimer */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1870675C1EC9F2EE0031138E /* Build configuration list for PBXNativeTarget "DownloadFailureTimer" */;
+			buildPhases = (
+				187067411EC9F2EE0031138E /* Sources */,
+				187067421EC9F2EE0031138E /* Frameworks */,
+				187067431EC9F2EE0031138E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DownloadFailureTimer;
+			productName = DownloadFailureTimer;
+			productReference = 187067451EC9F2EE0031138E /* DownloadFailureTimer.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		1870673D1EC9F2EE0031138E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0830;
+				ORGANIZATIONNAME = Ossey;
+				TargetAttributes = {
+					187067441EC9F2EE0031138E = {
+						CreatedOnToolsVersion = 8.3.1;
+						DevelopmentTeam = H3Q63DY2LV;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 187067401EC9F2EE0031138E /* Build configuration list for PBXProject "DownloadFailureTimer" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 1870673C1EC9F2EE0031138E;
+			productRefGroup = 187067461EC9F2EE0031138E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				187067441EC9F2EE0031138E /* DownloadFailureTimer */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		187067431EC9F2EE0031138E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				187067581EC9F2EE0031138E /* LaunchScreen.storyboard in Resources */,
+				187067551EC9F2EE0031138E /* Assets.xcassets in Resources */,
+				187067531EC9F2EE0031138E /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		187067411EC9F2EE0031138E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				187067611EC9F32A0031138E /* AutoTimer.m in Sources */,
+				187067501EC9F2EE0031138E /* ViewController.m in Sources */,
+				1870674D1EC9F2EE0031138E /* AppDelegate.m in Sources */,
+				1870674A1EC9F2EE0031138E /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		187067511EC9F2EE0031138E /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				187067521EC9F2EE0031138E /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		187067561EC9F2EE0031138E /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				187067571EC9F2EE0031138E /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		1870675A1EC9F2EE0031138E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		1870675B1EC9F2EE0031138E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		1870675D1EC9F2EE0031138E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = H3Q63DY2LV;
+				INFOPLIST_FILE = DownloadFailureTimer/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.sey.DownloadFailureTimer;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		1870675E1EC9F2EE0031138E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = H3Q63DY2LV;
+				INFOPLIST_FILE = DownloadFailureTimer/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.sey.DownloadFailureTimer;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		187067401EC9F2EE0031138E /* Build configuration list for PBXProject "DownloadFailureTimer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1870675A1EC9F2EE0031138E /* Debug */,
+				1870675B1EC9F2EE0031138E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1870675C1EC9F2EE0031138E /* Build configuration list for PBXNativeTarget "DownloadFailureTimer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1870675D1EC9F2EE0031138E /* Debug */,
+				1870675E1EC9F2EE0031138E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 1870673D1EC9F2EE0031138E /* Project object */;
+}
