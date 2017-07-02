@@ -8,12 +8,12 @@
 
 #import "AutoTimer.h"
 #import <objc/runtime.h>
-
+static NSString * const _TimerKey = @"timer";
+static NSString * const _ActionKey = @"Action";
 
 @implementation AutoTimer {
     
-    NSMutableDictionary *_timerDictionary;
-    NSMutableDictionary *_actionBlockDictionary;
+    NSMutableDictionary<NSString *, NSMutableDictionary *> *_timerDictionary;
 }
 
 
@@ -24,7 +24,6 @@
     dispatch_once(&onceToken, ^{
         _timer = [AutoTimer new];
         _timer->_timerDictionary = [NSMutableDictionary dictionaryWithCapacity:0];
-        _timer->_actionBlockDictionary = [NSMutableDictionary dictionaryWithCapacity:0];
     });
     
     return _timer;
@@ -32,6 +31,7 @@
 
 
 + (void)startTimerWithIdentifier:(NSString *)timerIdentifier
+                        fireTime:(NSTimeInterval)fireTime
                     timeInterval:(NSTimeInterval)interval
                            queue:(dispatch_queue_t)queue
                          repeats:(BOOL)repeats
@@ -42,43 +42,62 @@
         return;
     }
     
-    if (queue == nil) {
+    
+    if (nil == queue) {
         queue = dispatch_queue_create("com.ossey.AutoTimer.queue", DISPATCH_QUEUE_CONCURRENT);
         
     }
+    AutoTimer *instace = [AutoTimer sharedInstance];
     
-    dispatch_source_t timer = [[AutoTimer sharedInstance]->_timerDictionary objectForKey:timerIdentifier];
+    if (!instace->_timerDictionary) {
+        instace->_timerDictionary = [NSMutableDictionary dictionaryWithCapacity:0];
+    }
+    NSMutableDictionary *timerDict = instace->_timerDictionary[_TimerKey];
+    NSMutableDictionary *actionDict = instace->_timerDictionary[_ActionKey];
+    if (!timerDict) {
+        timerDict = [NSMutableDictionary dictionaryWithCapacity:0];
+        [instace->_timerDictionary setObject:timerDict forKey:_TimerKey];
+    }
+    if (!actionDict) {
+        actionDict = [NSMutableDictionary dictionaryWithCapacity:0];
+        [instace->_timerDictionary setObject:actionDict forKey:_ActionKey];
+    }
+    
+    dispatch_source_t timer = [timerDict objectForKey:timerIdentifier];
     if (!timer) {
         timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, queue);
         dispatch_resume(timer);
-        [[AutoTimer sharedInstance]->_timerDictionary setObject:timer forKey:timerIdentifier];
+        [timerDict setObject:timer forKey:timerIdentifier];
     }
+    if (fireTime < 0.0) {
+        fireTime = 0.0;
+    }
+    dispatch_source_set_timer(timer, dispatch_time(DISPATCH_TIME_NOW, fireTime * NSEC_PER_SEC), interval * NSEC_PER_SEC, 0.1 * NSEC_PER_SEC);
     
-    dispatch_source_set_timer(timer, dispatch_time(DISPATCH_TIME_NOW, interval * NSEC_PER_SEC), interval * NSEC_PER_SEC, 0.1 * NSEC_PER_SEC);
-    
-    __weak typeof(self) weakSelf = self;
     
     if (option == AutoTimerActionOptionGiveUp) {
         
         // 移除之前的定时器执行的事件
-        [[AutoTimer sharedInstance]->_actionBlockDictionary removeObjectForKey:timerIdentifier];
+        if (actionDict.count) {
+            [actionDict removeObjectForKey:timerIdentifier];
+        }
         
-        dispatch_source_set_event_handler(timer, ^{
+        dispatch_source_set_event_handler(timer, ^{ @autoreleasepool {
             if (block) {
                 block();
             }
             
             if (!repeats) {
-                [weakSelf cancel:timerIdentifier];
+                [AutoTimer cancel:timerIdentifier];
             }
-        });
+        }});
     } else if (option == AutoTimerActionOptionMerge) {
         
         // 保存定时器执行的事件
-        [[AutoTimer sharedInstance] saveActionBlock:block forTimerIdentifier:timerIdentifier];
+        [instace saveActionBlock:block forTimerIdentifier:timerIdentifier];
         
-        dispatch_source_set_event_handler(timer, ^{
-            NSMutableArray *actionArray = [[AutoTimer sharedInstance]->_actionBlockDictionary objectForKey:timerIdentifier];
+        dispatch_source_set_event_handler(timer, ^{ @autoreleasepool {
+            NSMutableArray *actionArray = [actionDict objectForKey:timerIdentifier];
             [actionArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
                 void (^block)() = obj;
                 if (block) {
@@ -86,12 +105,12 @@
                 }
             }];
             
-            [[AutoTimer sharedInstance]->_actionBlockDictionary removeObjectForKey:timerIdentifier];
+            [actionDict removeObjectForKey:timerIdentifier];
             
             if (!repeats) {
-                [weakSelf cancel:timerIdentifier];
+                [AutoTimer cancel:timerIdentifier];
             }
-        });
+        }});
     }
     
 }
@@ -102,18 +121,27 @@
         return;
     }
     
-    dispatch_source_t timer = [[AutoTimer sharedInstance]->_timerDictionary objectForKey:timerKey];
+    AutoTimer *instace = [AutoTimer sharedInstance];
+    NSMutableDictionary *timerDict = instace->_timerDictionary[_TimerKey];
+    NSMutableDictionary *actionDict = instace->_timerDictionary[_ActionKey];
+    
+    dispatch_source_t timer = [timerDict objectForKey:timerKey];
     
     if (!timer) {
         return;
     }
     
-    [[AutoTimer sharedInstance]->_timerDictionary removeObjectForKey:timerKey];
+    [timerDict removeObjectForKey:timerKey];
     dispatch_source_cancel(timer);
     timer = nil;
     
-    [[AutoTimer sharedInstance]->_actionBlockDictionary removeObjectForKey:timerKey];
+    [actionDict removeObjectForKey:timerKey];
+    
+    [instace->_timerDictionary removeAllObjects];
+    instace->_timerDictionary = nil;
+    
 }
+
 
 + (BOOL)existTimer:(NSString *)timerKey {
     return [[AutoTimer sharedInstance]->_timerDictionary objectForKey:timerKey];
@@ -124,15 +152,40 @@
         return;
     }
     
-    id actionArray = [_actionBlockDictionary objectForKey:timerIdentifier];
+    if (!_timerDictionary) {
+        _timerDictionary = [NSMutableDictionary dictionaryWithCapacity:0];
+    }
+    NSMutableDictionary *timerDict = _timerDictionary[_TimerKey];
+    NSMutableDictionary *actionDict = _timerDictionary[_ActionKey];
+    if (!timerDict) {
+        timerDict = [NSMutableDictionary dictionaryWithCapacity:0];
+        [_timerDictionary setObject:timerDict forKey:_TimerKey];
+    }
+    if (!actionDict) {
+        actionDict = [NSMutableDictionary dictionaryWithCapacity:0];
+        [_timerDictionary setObject:actionDict forKey:_ActionKey];
+    }
+    
+    id actionArray = [actionDict objectForKey:timerIdentifier];
     
     if (actionArray && [actionArray isKindOfClass:[NSMutableArray class]]) {
         [(NSMutableArray *)actionArray addObject:block];
     }else {
         NSMutableArray *array = [NSMutableArray arrayWithObject:block];
-        [_actionBlockDictionary setObject:array forKey:timerIdentifier];
+        [actionDict setObject:array forKey:timerIdentifier];
     }
 }
 
+
+//- (dispatch_time_t)fireTimer {
+////    uint64_t delay = (uint64_t)([self.fireDate timeIntervalSinceNow] * NSEC_PER_SEC);
+////    dispatch_time_t fireTime = dispatch_time(DISPATCH_TIME_NOW, delay);
+////    return fireTime;
+//
+//    uint64_t intervalTime = self.fireTimeInterval * NSEC_PER_SEC;
+//    dispatch_time_t startTime = dispatch_time(DISPATCH_TIME_NOW, intervalTime);
+//
+//    return startTime;
+//}
 
 @end

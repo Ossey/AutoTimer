@@ -26,25 +26,22 @@ static NSString *timerKey = @"timer";
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     
+
     
-    __weak typeof(self) weakSelf = self;
-    
-    [AutoTimer startTimerWithIdentifier:timerKey timeInterval:10.0 queue:nil repeats:YES actionOption:AutoTimerActionOptionGiveUp block:^{
-        [weakSelf doSomethingEveryTwoSeconds];
+    [AutoTimer startTimerWithIdentifier:timerKey fireTime:10.0 timeInterval:10.0 queue:nil repeats:YES actionOption:AutoTimerActionOptionGiveUp block:^{
+        // timer每次执行打印一条n的值，在执行到n==10的时候cancel掉timer
+        // 即使执行timer期间，再次触发touchesBegan方法，log的打印也不会受影响
+        static NSUInteger n = 0;
+        NSLog(@"n: %lu", n++);
+        
+        if (n >= 10) {
+            [AutoTimer cancel:timerKey];
+        }
+
     }];
 }
 
 
-/* timer每次执行打印一条log记录，在执行到n==10的时候cancel掉timer */
-- (void)doSomethingEveryTwoSeconds
-{
-    static NSUInteger n = 0;
-    NSLog(@"myTimer runs %lu times!", (unsigned long)n++);
-    
-    if (n >= 10) {
-        [AutoTimer cancel:timerKey];
-    }
-}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
