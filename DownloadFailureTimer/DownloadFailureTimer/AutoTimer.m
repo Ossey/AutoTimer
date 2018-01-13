@@ -2,8 +2,8 @@
 //  AutoTimer.m
 //  DownloadFailureTimer
 //
-//  Created by Ossey on 2017/5/15.
-//  Copyright © 2017年 Ossey. All rights reserved.
+//  Created by alpface on 2017/5/15.
+//  Copyright © 2017年 alpface. All rights reserved.
 //
 
 #import "AutoTimer.h"
@@ -36,7 +36,7 @@ static NSString * const _ActionKey = @"Action";
                            queue:(dispatch_queue_t)queue
                          repeats:(BOOL)repeats
                     actionOption:(AutoTimerActionOption)option
-                           block:(void (^)())block {
+                           block:(void (^)(void))block {
     
     if (nil == timerIdentifier) {
         return;
@@ -44,7 +44,7 @@ static NSString * const _ActionKey = @"Action";
     
     
     if (nil == queue) {
-        queue = dispatch_queue_create("com.ossey.AutoTimer.queue", DISPATCH_QUEUE_CONCURRENT);
+        queue = dispatch_queue_create("com.alpface.AutoTimer.queue", DISPATCH_QUEUE_CONCURRENT);
         
     }
     AutoTimer *instace = [AutoTimer sharedInstance];
@@ -99,7 +99,7 @@ static NSString * const _ActionKey = @"Action";
         dispatch_source_set_event_handler(timer, ^{ @autoreleasepool {
             NSMutableArray *actionArray = [actionDict objectForKey:timerIdentifier];
             [actionArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-                void (^block)() = obj;
+                void (^block)(void) = obj;
                 if (block) {
                     block();
                 }
@@ -147,7 +147,7 @@ static NSString * const _ActionKey = @"Action";
     return [[AutoTimer sharedInstance]->_timerDictionary objectForKey:timerKey];
 }
 
-- (void)saveActionBlock:(void (^)())block forTimerIdentifier:(NSString *)timerIdentifier {
+- (void)saveActionBlock:(void (^)(void))block forTimerIdentifier:(NSString *)timerIdentifier {
     if (nil == timerIdentifier) {
         return;
     }

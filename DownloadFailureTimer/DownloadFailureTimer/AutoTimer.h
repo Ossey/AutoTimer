@@ -2,8 +2,8 @@
 //  AutoTimer.h
 //  DownloadFailureTimer
 //
-//  Created by Ossey on 2017/5/15.
-//  Copyright © 2017年 Ossey. All rights reserved.
+//  Created by alpface on 2017/5/15.
+//  Copyright © 2017年 alpface. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -38,7 +38,7 @@ typedef NS_ENUM(NSInteger, AutoTimerActionOption) {
                            queue:(dispatch_queue_t)queue
                          repeats:(BOOL)repeats
                     actionOption:(AutoTimerActionOption)option
-                           block:(void (^)())block;
+                           block:(void (^)(void))block;
 
 
 /// 取消一个定时器
